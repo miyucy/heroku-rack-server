@@ -1,9 +1,6 @@
 require 'rack'
 
-use Rack::ShowExceptions
-use Rack::Lint
-use Rack::ContentLength
-run lambda { |env|
+app = lambda { |env|
   [
     200,
     {'Content-Type' => 'text/plain'},
@@ -14,3 +11,5 @@ run lambda { |env|
     ]
   ]
 }
+
+run Rack::ShowExceptions.new(Rack::Lint.new(Rack::ContentLength.new(app)))
