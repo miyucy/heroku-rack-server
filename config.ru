@@ -11,4 +11,4 @@ app = lambda { |env|
   ]
 }
 
-run Rack::ShowExceptions.new(Rack::ContentLength.new(app))
+run Rack::ContentLength.new(Rack::ShowExceptions.new(app))
